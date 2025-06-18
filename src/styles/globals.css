@@ -4,19 +4,6 @@
 */
 @custom-variant dark (&:is(.dark *));
 
-/* PERMITE CRIAR ESTILIZAÇÃO PERSONALIZADA PARA O TAILWIND
-@theme {
-    --color-*: initial;
-
-    --color-blue: #6f9de2;
-    --color-purpple: #9871f3;
-    --color-danger: #f05d6c;
-}
-*/
-
-/* ---break---
-*/
-
 @theme inline {
 
   --radius-sm: calc(var(--radius) - 4px);
