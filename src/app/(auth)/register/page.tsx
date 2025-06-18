@@ -18,10 +18,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-export default function RegisterPage({
-  className,
-  ...props
-}: React.ComponentProps<'div'>) {
+export default function RegisterPage() {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
 
@@ -30,14 +27,14 @@ export default function RegisterPage({
     setIsLoading(true)
 
     // Simulate registration
-    setTimeout(() => {
+    setTimeout(() => { 
       setIsLoading(false)
-      router.push('/projects')
+      router.push('/dashboard')
     }, 1000)
   }
 
   return (
-    <div className={cn('flex flex-col gap-6', className)} {...props}>
+    <div className="flex flex-col gap-6">
       <Card>
         <CardHeader className="text-center">
           <CardTitle className="text-xl">Criar conta</CardTitle>

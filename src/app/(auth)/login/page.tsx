@@ -18,10 +18,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-export default function LoginPage({
-  className,
-  ...props
-}: React.ComponentProps<'div'>) {
+export default function LoginPage() {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
 
@@ -32,12 +29,12 @@ export default function LoginPage({
     // Simulate authentication
     setTimeout(() => {
       setIsLoading(false)
-      router.push('/projects')
+      router.push('/dashboard')
     }, 1000)
   }
 
   return (
-    <div className={cn('flex flex-col gap-6', className)} {...props}>
+    <div className="flex flex-col gap-6">
       <Card>
         <CardHeader className="text-center">
           <CardTitle className="text-xl">Bem vindo de volta</CardTitle>

@@ -16,7 +16,7 @@ export default function PrivateLayout({
     >
       <AppSidebar variant="inset" />
       <SidebarInset>
-        <Container className="@container/main flex flex-1 flex-col gap-6 py-8">
+        <Container className="@container/main flex flex-1 flex-col gap-6 !p-6">
           {children}
         </Container>
       </SidebarInset>

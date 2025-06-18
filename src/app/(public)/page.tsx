@@ -4,6 +4,22 @@ import { ArrowRight, CheckCircle2, Clock, Users } from 'lucide-react'
 import Link from 'next/link'
 
 export default function LandingPage() {
+
+  const data = [
+    {
+      title: 'Recursos',
+      url: '/features',
+    },
+    {
+      title: 'Planos',
+      url: '/plans',
+    },
+    {
+      title: 'FAQ',
+      url: '#faq',
+    }
+  ]
+
   return (
     <div className="flex min-h-screen flex-col">
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -13,39 +29,24 @@ export default function LandingPage() {
             <span className="text-xl font-bold">TaskFlow</span>
           </div>
           <nav className="hidden md:flex gap-6">
-            <Link
-              href="#features"
-              className="text-sm font-medium hover:underline underline-offset-4"
-            >
-              Features
-            </Link>
-            <Link
-              href="#pricing"
-              className="text-sm font-medium hover:underline underline-offset-4"
-            >
-              Pricing
-            </Link>
-            <Link
-              href="#testimonials"
-              className="text-sm font-medium hover:underline underline-offset-4"
-            >
-              Testimonials
-            </Link>
-            <Link
-              href="#faq"
-              className="text-sm font-medium hover:underline underline-offset-4"
-            >
-              FAQ
-            </Link>
+            {data.map((item) => (
+              <Link
+                key={item.title}
+                href={item.url}
+                className="text-sm font-medium hover:underline underline-offset-4"
+              >
+                {item.title}
+              </Link>
+            ))}
           </nav>
           <div className="flex items-center gap-4">
             <Link href="/login">
               <Button variant="ghost" size="sm">
-                Log in
+                Entrar
               </Button>
             </Link>
             <Link href="/register">
-              <Button size="sm">Get Started</Button>
+              <Button size="sm">Começar</Button>
             </Link>
           </div>
         </Container>
@@ -141,7 +142,7 @@ export default function LandingPage() {
             </div>
           </Container>
         </section>
-        <section id="pricing" className="w-full py-12 md:py-24 lg:py-32">
+        <section className="w-full py-12 md:py-24 lg:py-32">
           <Container className="px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
