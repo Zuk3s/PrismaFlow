@@ -1,10 +1,10 @@
 import { Button } from '@/components/ui/button'
 import { Container } from '@/components/ui/container'
+import { SignInButton, SignUpButton } from '@clerk/nextjs'
 import { ArrowRight, CheckCircle2, Clock, Users } from 'lucide-react'
 import Link from 'next/link'
 
 export default function LandingPage() {
-
   const data = [
     {
       title: 'Recursos',
@@ -17,7 +17,7 @@ export default function LandingPage() {
     {
       title: 'FAQ',
       url: '#faq',
-    }
+    },
   ]
 
   return (
@@ -29,7 +29,7 @@ export default function LandingPage() {
             <span className="text-xl font-bold">TaskFlow</span>
           </div>
           <nav className="hidden md:flex gap-6">
-            {data.map((item) => (
+            {data.map(item => (
               <Link
                 key={item.title}
                 href={item.url}
@@ -40,12 +40,12 @@ export default function LandingPage() {
             ))}
           </nav>
           <div className="flex items-center gap-4">
-            <Link href="/login">
+            <Link href={'/sign-in'}>
               <Button variant="ghost" size="sm">
                 Entrar
               </Button>
             </Link>
-            <Link href="/register">
+            <Link href={'sign-up'}>
               <Button size="sm">Começar</Button>
             </Link>
           </div>
@@ -66,7 +66,7 @@ export default function LandingPage() {
                 </p>
               </div>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <Link href="/register">
+                <Link href={'sign-up'}>
                   <Button size="lg" className="gap-1">
                     Começar de graça
                     <ArrowRight className="h-4 w-4" />
