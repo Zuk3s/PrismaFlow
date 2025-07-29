@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Textarea } from "@/components/ui/textarea"
 import { Switch } from "@/components/ui/switch"
+import Image from "next/image"
 
 export default function AccountPage() {
   const [isEditing, setIsEditing] = useState(false)
@@ -45,7 +46,7 @@ export default function AccountPage() {
             <CardContent className="space-y-4">
               <div className="flex flex-col gap-4 sm:flex-row">
                 <div className="flex flex-col items-center gap-2 sm:w-1/3">
-                  <img src={user.avatar || "/placeholder.svg"} alt={user.name} className="h-32 w-32 rounded-full" />
+                  <Image src={user.avatar || "/placeholder.svg"} alt={user.name} className="h-32 w-32 rounded-full" />
                   <Button variant="outline" size="sm">
                     Alterar Avatar
                   </Button>
