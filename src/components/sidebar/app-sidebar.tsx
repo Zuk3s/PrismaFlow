@@ -1,7 +1,6 @@
 'use client'
 
 import {
-  ChartBar,
   Folder,
   HelpCircle,
   LayoutDashboard,
