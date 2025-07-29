@@ -1,6 +1,12 @@
 'use client'
 
-import { CreditCard, EllipsisVertical, LogOut, MessageSquareDot, UserCircle } from 'lucide-react'
+import {
+  CreditCard,
+  EllipsisVertical,
+  LogOut,
+  MessageSquareDot,
+  UserCircle,
+} from 'lucide-react'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
@@ -18,17 +24,13 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@/components/ui/sidebar'
+import { useClerk, useUser } from '@clerk/nextjs'
+import { toast } from 'sonner'
 
-export function NavUser({
-  user,
-}: {
-  user: {
-    name: string
-    email: string
-    avatar: string
-  }
-}) {
+export function NavUser() {
   const { isMobile } = useSidebar()
+  const { user } = useUser()
+  const { signOut, openUserProfile } = useClerk()
 
   return (
     <SidebarMenu>
@@ -39,14 +41,13 @@ export function NavUser({
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <Avatar className="h-8 w-8 rounded-lg grayscale">
-                <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+              <Avatar className="h-8 w-8 rounded-lg">
+                <AvatarImage src={user?.imageUrl} alt={'Usuário'} />
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{user.name}</span>
-                <span className="text-muted-foreground truncate text-xs">
-                  {user.email}
+                <span className="truncate font-medium">{user?.username}</span>
+                <span className="truncate text-xs text-gray-300">
+                  {user?.fullName}
                 </span>
               </div>
               <EllipsisVertical className="ml-auto size-4" />
@@ -61,36 +62,37 @@ export function NavUser({
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={user.avatar} alt={user.name} />
-                  <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                  <AvatarImage src={user?.imageUrl} alt={'Usuário'} />
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">{user.name}</span>
-                  <span className="text-muted-foreground truncate text-xs">
-                    {user.email}
+                  <span className="truncate font-medium">{user?.username}</span>
+                  <span className="truncate text-xs text-gray-300">
+                    {user?.fullName}
                   </span>
                 </div>
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => openUserProfile()}>
                 <UserCircle />
-                Account
+                Conta
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => toast.warning('Funcionalidade ainda não criada')}
+              >
                 <CreditCard />
-                Billing
+                Assinaturas
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <MessageSquareDot />
-                Notifications
+                Notificações
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={() => signOut()}>
               <LogOut />
-              Log out
+              Sair
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
